@@ -1,30 +1,97 @@
 {
-  "expo": {
-    "name": "anota-ai",
-    "slug": "anota-ai",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "AnotaAí!",
+        "slug": "anota-ai",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "scheme": "anota-ai",
+        "experiments": {
+            "typedRoutes": true
+        },
+        "splash": {
+            "image": "./assets/splash-icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "ios": {
+            "supportsTablet": true,
+            "infoPlist": {
+                "NSCameraUsageDescription": "O app usa a câmera para fotografar itens nas anotações.",
+                "NSPhotoLibraryUsageDescription": "O app acessa a galeria para anexar fotos às anotações."
+            }
+        },
+        "jsEngine": "hermes",
+        "android": {
+            "adaptiveIcon": {
+                "backgroundColor": "#E6F4FE",
+                "foregroundImage": "./assets/android-icon-foreground.png",
+                "backgroundImage": "./assets/android-icon-background.png",
+                "monochromeImage": "./assets/android-icon-monochrome.png"
+            },
+            "predictiveBackGestureEnabled": false,
+            "permissions": [
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.INTERNET",
+                "android.permission.RECORD_AUDIO",
+                "android.permission.CAMERA"
+            ],
+            "package": "com.gabriolli.anotaai"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "plugins": [
+            "expo-sqlite",
+            "expo-router",
+            "expo-file-system",
+            [
+                "expo-build-properties",
+                {
+                    "android": {
+                        "packagingOptions": {
+                            "pickFirst": ["**/libc++_shared.so"]
+                        },
+                        "extraGradleProps": {
+                            "reactNativeArchitectures": "arm64-v8a"
+                        }
+                    }
+                }
+            ],
+            [
+                "expo-notifications",
+                {
+                    "icon": "./assets/android-icon-monochrome.png",
+                    "color": "#3A91C4"
+                }
+            ],
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "O app acessa suas fotos para anexar à anotação.",
+                    "cameraPermission": "O app usa a câmera para fotografar o item anotado."
+                }
+            ],
+            [
+                "expo-camera",
+                {
+                    "cameraPermission": "O app usa a câmera para fotografar o item anotado.",
+                    "microphonePermission": "O app pode gravar áudio apenas se você usar vídeo com som.",
+                    "recordAudioAndroid": false
+                }
+            ],
+            "@react-native-community/datetimepicker",
+            "expo-notifications",
+            "expo-build-properties"
+        ],
+        "extra": {
+            "router": {},
+            "eas": {
+                "projectId": "22477563-6ca2-4c82-8ad5-c49d929da447"
+            }
+        },
+        "owner": "gabriolli"
     }
-  }
 }
